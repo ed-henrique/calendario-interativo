@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Calendário Interativo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div id="app" class="grid grid-cols-7 grid-rows-13 gap-5 m-10 h-screen max-h-[calc(100vh-5rem)] w-screen max-w-[calc(100vw-5rem)]">
+    <span class="font-extrabold text-lg text-center row-span-1">Domingo</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Segunda</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Terça</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Quarta</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Quinta</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Sexta</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Sábado</span>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">1</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">2</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">3</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">4</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">5</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">6</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">7</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">8</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">9</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">10</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">11</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">12</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">13</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">14</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">15</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">16</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">17</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">18</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">19</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">20</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">21</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">22</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">23</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">24</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">25</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">26</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">27</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">28</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">29</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">30</div>
+    <div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">31</div>
+    <div class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">1</div>
+    <div class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">2</div>
+    <div class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">3</div>
+    <div class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">4</div>
+  </div>
+
+  <script>
+    function getDayOfTheWeek(year, month, day) {
+      return new Date(year, month, day).getDay();
+    }
+
+    function numDaysInMonth(year, month) {
+      return new Date(year, month, 0).getDate();
+    }
+
+    const app = document.getElementById("app");
+    app.innerHTML = `
+    <span class="font-extrabold text-lg text-center row-span-1">Domingo</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Segunda</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Terça</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Quarta</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Quinta</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Sexta</span>
+    <span class="font-extrabold text-lg text-center row-span-1">Sábado</span>
+    `;
+
+    const now = new Date(2024, 5, 1);
+    const firstDay = getDayOfTheWeek(now.getFullYear(), now.getMonth(), 1)
+    const currentMonthDays = numDaysInMonth(now.getFullYear(), now.getMonth())
+
+    let lastMonthDays;
+    if (now.getMonth() === 0) {
+      lastMonthDays = numDaysInMonth(now.getFullYear() - 1, 12)
+    } else {
+      lastMonthDays = numDaysInMonth(now.getFullYear(), now.getMonth())
+    }
+
+    for (let i = 0; i < firstDay; i++) {
+      app.innerHTML += `<div class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">${lastMonthDays - firstDay + i + 1}</div>`;
+    }
+
+    for (let i = 1; i <= currentMonthDays; i++) {
+      app.innerHTML += `<div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">${i}</div>`;
+    }
+
+    if ((currentMonthDays + firstDay) % 7 !== 0) {
+      for (let i = 0; i < 7 - (currentMonthDays + firstDay) % 7; i++) {
+        app.innerHTML += `<div class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">${i + 1}</div>`;
+      }
+    }
+  </script>
+</body>
+
+</html>
