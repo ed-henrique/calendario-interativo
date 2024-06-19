@@ -43,15 +43,14 @@
     }
 
     function render() {
-      const firstDay = getDayOfTheWeek(now.getFullYear(), now.getMonth(), 1)
-      const currentMonthDays = numDaysInMonth(now.getFullYear(), now.getMonth())
+      const month = now.getMonth();
+      const year = now.getFullYear();
+      const firstDay = getDayOfTheWeek(year, month, 1)
+      const currentMonthDays = numDaysInMonth(year, month + 1)
 
-      let lastMonthDays;
-      if (now.getMonth() === 0) {
-        lastMonthDays = numDaysInMonth(now.getFullYear() - 1, 12)
-      } else {
-        lastMonthDays = numDaysInMonth(now.getFullYear(), now.getMonth())
-      }
+      const lastMonth = new Date(year, month - 1);
+      const nextMonth = new Date(year, month + 1);
+      const lastMonthDays = numDaysInMonth(lastMonth.getFullYear(), lastMonth.getMonth() + 1);
 
       month_names = [
         "Janeiro",
@@ -67,9 +66,6 @@
         "Novembro",
         "Dezembro",
       ];
-
-      const month = now.getMonth();
-      const year = now.getFullYear();
 
       const app = document.getElementById("app");
       app.innerHTML = `
@@ -96,16 +92,16 @@
       `;
 
       for (let i = 0; i < firstDay; i++) {
-        app.innerHTML += `<div class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">${lastMonthDays - firstDay + i + 1}</div>`;
+        app.innerHTML += `<div id="${lastMonth.getMonth() === 11 ? year - 1 : year}-${lastMonth.getMonth() + 1}-${lastMonthDays - firstDay + i + 1}" class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">${lastMonthDays - firstDay + i + 1}</div>`;
       }
 
       for (let i = 1; i <= currentMonthDays; i++) {
-        app.innerHTML += `<div class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">${i}</div>`;
+        app.innerHTML += `<div id="${year}-${month + 1}-${i}" class="row-span-2 border-2 border-black bg-blue-200 rounded font-bold flex items-center justify-center">${i}</div>`;
       }
 
       if ((currentMonthDays + firstDay) % 7 !== 0) {
         for (let i = 0; i < 7 - (currentMonthDays + firstDay) % 7; i++) {
-          app.innerHTML += `<div class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">${i + 1}</div>`;
+          app.innerHTML += `<div id="${nextMonth.getMonth() === 0 ? year + 1 : year}-${nextMonth.getMonth() + 1}-${i + 1}" class="row-span-2 border-2 border-black bg-gray-100 rounded font-bold flex items-center justify-center">${i + 1}</div>`;
         }
       }
     }
